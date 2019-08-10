@@ -102,7 +102,7 @@ int main()
 		t1.join();
 		t2.join();
 	}
-	catch(const char* msg){
+	catch(const char* msg){
 		cerr << msg << endl;
 	}
 	return 0;
