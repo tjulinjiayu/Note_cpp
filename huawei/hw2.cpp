@@ -248,3 +248,69 @@ int main() {
 //     }
 //     return 0;
 // }
+
+// #include<iostream>
+// #include<unordered_map>
+// #include<vector>
+// using namespace std;
+
+
+// int find(vector<int>&p, int num){
+//  if (p[num] == num)
+//   return num;//可以理解为如果当前值的上级是本身就输出当前值
+//  return p[num] = find(p, p[num]);//若当前值的上级不是他本身就继续向上找一直找到他的根节点
+// }
+
+// void unite(vector<int>&p, int num1, int num2){
+//  int p_num1 = find(p, num1);//找到第一个数字的掌门人
+//  int p_num2 = find(p, num2);//找到第二个数字的掌门人
+//  p[p_num2] = p_num1;//将第二个掌门人放到第一个掌门人的下级
+// }
+
+// int main()
+// {
+//  //直接给定二维数组则要获取各个数字的位置
+//  vector<vector<int>> m{ { 1, 2, 3, 4, 5 }, { 11, 12, 13, 14, 15 }, { 21, 22, 23, 24, 25 }, { 31, 32, 33, 34, 35 }, { 41, 42, 43, 44, 45 } };
+//  unordered_map<int, int> matrix(m.size()*m[0].size());
+//  for (int i = 0; i<m.size(); ++i){
+//   for (int j = 0; j < m[0].size(); ++j){
+//    matrix[m[i][j]] = i * 5 + j;
+//   }  
+//  }
+//  int n;
+//  while (cin >> n){
+//   unordered_map<int, int> inp(n);
+//   vector<int> inpnum(n);
+//   for (int i = 0; i < n; ++i){
+//    cin >> inpnum[i];
+//    inp[inpnum[i]] = i;
+//   }
+//   int dir[4][2] = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+//   vector<int> p = { 0, 1, 2, 3, 4};
+//   for (int i = 0; i < n; ++i){
+//    int pre = matrix[inpnum[i]];
+//    //获取当前判断的数字的在原二维数组中的位置
+//    int x = pre / 5;
+//    int y = pre % 5;
+//    for (int j = 0; j < 4; ++j){
+//     int next_x = x + dir[j][0];
+//     int next_y = y + dir[j][1];//分别向上向下移动
+//     if (next_x < 0 || next_x >= 5 || next_y < 0 || next_y >= 5)//超过界限
+//      continue;
+//     if (inp.find(m[next_x][next_y]) == inp.end())
+//      continue;
+//     //输入的数字中存在当前值在给定数组中相邻的数字，将他们进行合并，将相邻的数字放到当前数字的集合中
+//     unite(p, inp[m[x][y]], inp[m[next_x][next_y]]);
+//     }
+//   }
+//     bool res = true;
+//   for (int i = 0; i < n; ++i){
+//    if (p[i] != p[0]){
+//     res = false;
+//     break;
+//    }
+//   }
+//   cout << res << endl;
+//  }
+//  return 0;
+// }
